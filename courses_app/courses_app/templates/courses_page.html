@@ -1,0 +1,6 @@
+<!-- courses_page.html -->
+{% if user.is_authenticated %}
+    <p>This is the Courses page</p>
+{% else %}
+    <p>You have no permissions to view this page</p>
+{% endif %}
