@@ -1,0 +1,11 @@
+<h2 style="color: green">Enter data of new member:</h2>
+
+<form method="post" action="{% url 'member_input' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send data</button>
+</form>
+
+<br>
+
+ <a href="{% url 'member_data'  %}">Member data page</a>

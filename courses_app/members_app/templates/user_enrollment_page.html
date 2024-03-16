@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>User Enrollment Form</h1>
+<form  method="post" action="{% url 'user_enrollment' %}">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <select class="form-select" name="username" id="username">
+    {% for user in users %}
+       <option value="{{ user.username }}">{{ user.username }}</option>
+    {% endfor %}
+    </select>
+    <br>
+
+    <label for="courses">Course:</label>
+    <select class="form-select" name="course" id="course">
+    {% for course in courses %}
+       <option value="{{ course.name }}">{{ course.name }}</option>
+    {% endfor %}
+    </select>
+    <br>
+    <button class="btn btn-primary" type="submit" name="save">Submit</button>
+    <br>
+
+    {% if message %}
+        <br>
+        <p style="color: {{ message.color }}">{{ message.message }}</p>
+    {% endif %}
+    <br>
+    <br>
+    <h2>List of enrollments:</h2>
+
+    <table class="table table-bordered table-striped table-hover">
+        <tr>
+            <th>User</th>
+            <th>Course</th>
+            <th>Enrollment Date</th>
+        </tr>
+        {% if user_enrollments %}
+            {% for enrollment in user_enrollments %}
+                <tr>
+                    <td>{{ enrollment.user }}</td>
+                    <td>{{ enrollment.course }}</td>
+                    <td>{{ enrollment.enrollment_date }}</td>
+                    <td>
+                        <button formnovalidate class="btn btn-danger" name="delete" value="{{ enrollment.id }}">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+</form>
+</body>
+</html>
