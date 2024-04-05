@@ -24,4 +24,5 @@ urlpatterns = [
     path("", CoursesPage.as_view(), name="courses_page"),
     path("add_course/", CoursesAddPage.as_view(), name="add-course"),
     path("members/", include("members_app.urls")),
+    path("login/", include("logistration.urls")),
 ]

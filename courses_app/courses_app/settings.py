@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +29,7 @@ SECRET_KEY = "django-insecure-fcf=8xpt(pmy01_^9fa=%#y^1q$i0n349a3nu1wak2ew4xe!pb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['264c-85-114-206-211.ngrok-free.app', '127.0.0.1', 'localhost', '0.0.0.0']
+ALLOWED_HOSTS = ['9239-85-114-206-211.ngrok-free.app', '127.0.0.1', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -40,7 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "members_app",
-    "courses_app"
+    "courses_app",
+    "logistration",
 ]
 
 MIDDLEWARE = [
@@ -58,7 +61,7 @@ ROOT_URLCONF = "courses_app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'courses_app', 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

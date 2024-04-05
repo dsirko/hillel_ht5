@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Authentication</h1>
+            {% if message %}
+                <p style="color: {{ message.color }}">{{ message.message }}</p>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}!</p>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </header>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
